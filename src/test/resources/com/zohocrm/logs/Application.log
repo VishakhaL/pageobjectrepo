@@ -1,0 +1,8 @@
+22/03/2021 12:29:23 devpinoyLogger Config file loaded !!!
+22/03/2021 12:29:23 devpinoyLogger OR file loaded !!!
+22/03/2021 12:29:33 devpinoyLogger Navigated to : https://www.zoho.com/crm/crmplus
+22/03/2021 12:29:41 devpinoyLogger Clicking on Element loginlink_CSS
+22/03/2021 12:29:41 devpinoyLogger Typing in : userName_CSSEntered value as: ridertest2018@gmail.com
+22/03/2021 12:29:43 devpinoyLogger Clicking on Element nextButton_CSS
+22/03/2021 12:29:46 devpinoyLogger Typing in : password_CSSEntered value as: testpass2021@
+22/03/2021 12:30:17 devpinoyLogger Clicking on Element signin_XPATH
