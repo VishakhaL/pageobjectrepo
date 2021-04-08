@@ -27,7 +27,7 @@ public class LoginTest extends BaseTest{
 		LoginPage lp=homePage.goToLogin();
 		
 		//LoginPage loginPage=new LoginPage();
-		CRMHomePage crmHomePage=lp.doLogin(data.get("username"),data.get("password"));
+		//CRMHomePage crmHomePage=lp.doLogin(data.get("username"),data.get("password"));
 	}
 
 }
