@@ -1,14 +1,22 @@
 package com.zohocrm.pages.account;
 
-import org.openqa.selenium.By;
+
+import org.testng.annotations.Test;
 
 import com.zohocrm.base.Page;
+import com.zohocrm.utilities.Utilities;
+
 
 public class CreateAccountsPage extends Page{
-	
-public void createAccount(String accountName) {
-	driver.findElement(By.cssSelector("#Crm_Accounts_ACCOUNTNAME")).sendKeys(accountName);
-		
-	}
+
+	/*
+	 * @Test(dataProviderClass = Utilities.class, dataProvider = "dp") public void
+	 * createAccount(String accountName) {
+	 * 
+	 * 
+	 * type("accountName_CSS",accountName); click("saveAccounts_XPATH");
+	 * 
+	 * }
+	 */
 
 }

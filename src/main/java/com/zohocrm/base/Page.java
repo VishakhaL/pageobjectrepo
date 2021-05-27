@@ -1,5 +1,7 @@
 package com.zohocrm.base;
 
+
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -11,12 +13,15 @@ import java.util.concurrent.TimeUnit;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.PageLoadStrategy;
+//import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -96,13 +101,18 @@ public class Page {
 			
 			if (config.getProperty("browser").equals("firefox")) {
 
-				System.setProperty("webdriver.gecko.driver", "gecko.exe");
-				driver = new FirefoxDriver();
+				System.setProperty("webdriver.gecko.driver", "System.getProperty(\"user.dir\") + \"\\src\\test\\resources\\com\\zohocrm\\executables\\gecko.exe");
+				
+				 DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+			        capabilities.setCapability("marionette", true);
+			        driver = new FirefoxDriver(capabilities);
+				//driver = new FirefoxDriver();
 
 			} else if (config.getProperty("browser").equals("chrome")) {
 			//WebDriverManager.chromedriver().setup();
 			System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir") + "\\src\\test\\resources\\com\\zohocrm\\executables\\chromedriver.exe");
 	         
+			
 			
 			  Map<String, Object> prefs = new HashMap<String, Object>();
 			
@@ -111,9 +121,22 @@ public class Page {
 			 prefs.put("profile.password_manager_enabled", false); 
 			 ChromeOptions options = new ChromeOptions(); 
 			 options.setExperimentalOption("prefs", prefs);
-			  options.addArguments("--disable-extensions");
+			 options.addArguments("--disable-extensions");
 			  options.addArguments("--disable-infobars");
-			 driver = new ChromeDriver(options);
+			  
+			  options.addArguments("enable-automation");
+			//  options.addArguments("--headless");
+			//  options.addArguments("--window-size=1920,1080");
+			 // options.addArguments("--no-sandbox");
+			  options.addArguments("--disable-extensions");
+			  options.addArguments("--dns-prefetch-disable");
+			  options.addArguments("--disable-gpu");
+			  options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+			    driver = new ChromeDriver(options);
+			
+			
+			
+			
 			} else if (config.getProperty("browser").equals("ie")) {
 				System.setProperty("webdriver.ie.driver",
 				System.getProperty("user.dir") + "\\src\\test\\resources\\executables\\IEDriverServer.exe");
@@ -138,13 +161,13 @@ public class Page {
 	
 	//code to add test steps in test cases click and type 
 	
-	  public void click(String locator) {
+	  public static void click(String locator) {
 	  driver.findElement(By.cssSelector(OR.getProperty(locator))).click();
 	  log.debug("Clicking on Element "+ locator);
 	  test.log(LogStatus.INFO, "Clicking on : "+locator); 
 	  }
 	  
-	  public void type(String locator,String value) {
+	  public static void type(String locator,String value) {
 		 if(locator.endsWith("_CSS"))
 		 {
 	  driver.findElement(By.cssSelector(OR.getProperty(locator))).sendKeys(value);

@@ -6,8 +6,9 @@ import com.zohocrm.base.Page;
 
 public class BaseTest {
 	
-	@AfterSuite
-	public void tearDown() {
-		Page.quit();
-	}
+	
+	/*
+	 * @AfterSuite public void tearDown() { Page.quit(); }
+	 */
+	 
 }

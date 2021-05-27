@@ -16,6 +16,12 @@
         	 <class name="com.zohocrm.testcases.LoginTest"/>
         	 
         </classes>
-  </test>
+  </test> 
+  
+   <test name = " Account Menu Test">
+  	<classes>
+  	   <class name ="com.zohocrm.testcases.CreateAccountTest" />
+  	</classes>
+  </test>  
 
  </suite> <!-- Suite -->

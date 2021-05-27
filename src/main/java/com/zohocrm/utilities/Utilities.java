@@ -23,12 +23,29 @@ public class Utilities extends Page {
 	FileUtils.copyFile(srcFile, new File(System.getProperty("user.dir")+"\\target\\surefire-reports\\html\\"+screenshotName));
 	}
 	
+	
+	/*
+	 * @DataProvider(name="dp") public Object[][] getData(Method m){ String
+	 * sheetName=m.getName(); System.out.println(sheetName+"@@@@@@@@"); int
+	 * rows=excel.getRowCount(sheetName); System.out.println(rows+"Rows"); int
+	 * cols=excel.getColumnCount(sheetName); System.out.println(cols+"cols"); Object
+	 * [][] data=new Object[rows-1][cols];
+	 * 
+	 * for(int rowNum=2;rowNum<=rows;rowNum++){ for(int
+	 * colNum=0;colNum<cols;colNum++){
+	 * data[rowNum-2][colNum]=excel.getCellData(sheetName, colNum, rowNum); } }
+	 * return data; }
+	 */
+	
+	
+	
 	 @DataProvider(name="dp")
 	  public Object[][] getData(Method m){
 		  String sheetName=m.getName();
 		  int rows=excel.getRowCount(sheetName);
 		  int cols=excel.getColumnCount(sheetName);
-		  Object [][] data=new Object[rows-1][cols];
+		  
+		  Object [][] data=new Object[rows-1][1];
 		  Hashtable<String,String> table = null;
 		  
 		  for(int rowNum=2;rowNum<=rows;rowNum++){
@@ -37,7 +54,7 @@ public class Utilities extends Page {
 			  for(int colNum=0;colNum<cols;colNum++){
 				  table.put(excel.getCellData(sheetName, colNum, 1), excel.getCellData(sheetName, colNum, rowNum));
 				  data[rowNum - 2][0] = table;
-				  //data[rowNum-2][colNum]=excel.getCellData(sheetName, colNum, rowNum);
+				 
 			  }
 		  }
 		  return data;
@@ -67,7 +84,5 @@ public class Utilities extends Page {
 				
 			}
 			return false;
-		}
+		}  
 	}
-
-
