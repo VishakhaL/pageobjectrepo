@@ -3,6 +3,7 @@ package com.zohocrm.rough;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -21,9 +22,15 @@ public class ProductDemo {
 		driver=new ChromeDriver();
 		driver.get("https://rahulshettyacademy.com/seleniumPractise/");
 		driver.manage().window().maximize();
-		int j=0;
+		driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
 		String[] itemsNeeded = {"Brocolli","Cauliflower","Cucumber","Beetroot"};
+		
+		addItems(driver,itemsNeeded );
+	}
+	
+	public static void addItems(WebDriver driver, String[] itemsNeeded) {
 		List<WebElement> productNames = driver.findElements(By.cssSelector("h4.product-name"));
+		int j=0;
 		for(int i=0;i<productNames.size();i++) {
 			String[] pName = productNames.get(i).getText().split("-");
 			String formattedPName = pName[0].trim();
@@ -40,12 +47,8 @@ public class ProductDemo {
 			}
 		}
 		driver.findElement(By.xpath("//a[@class='cart-icon']")).click();
-
-	}
-	
-	public void tearDown() {
-		driver.quit();
-		
+		driver.findElement(By.xpath("//button[text()='PROCEED TO CHECKOUT']")).click();
+		driver.findElement(By.xpath("//div[@class='promoWrapper']/input[@class='promoCode']")).sendKeys("rahulshettyacademy");
 	}
 
 }
